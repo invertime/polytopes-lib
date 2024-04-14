@@ -1,0 +1,24 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: update and upgrade
+      run: sudo apt-get update && sudo apt-get upgrade
+
+    - name: Install SDL2
+      run: sudo apt-get install libsdl2-dev
+
+    - name: Install dependencies
+      run: make
